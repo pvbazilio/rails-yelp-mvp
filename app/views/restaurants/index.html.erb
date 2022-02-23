@@ -1,11 +1,20 @@
-<h1>Restaurants</h1>
+<div class ="container">
+  <div class = "row">
+    <div class = 'col-xs-12 col-sm-10 col-sm-offset-1'>
 
+      <h1 class = 'head'>Restaurants</h1>
 
-  <% @restaurants.each do |restaurant| %>
-    <%= restaurant.name %>
-    <p><%= link_to "Show details", restaurant_path(restaurant), class: 'btn btn-info' %><p>
-  <% end %>
+      <ul class = 'all_restaurants mb-3'>
+        <% @restaurants.each do |restaurant| %>
+          <li class = 'restaurants'>
+            <%= link_to restaurant.name, restaurant_path(restaurant)%>
+          </li>
+        <% end %>
+      </ul>
 
-  <div class = 'align_button'>
-    <%= link_to "Add a New Restaurant", new_restaurant_path, class: 'btn btn-primary' %>
+      <div class = 'align_button'>
+        <%= link_to "Add a New Restaurant", new_restaurant_path, class: 'btn btn-primary' %>
+      </div>
+    </div>
   </div>
+</div>

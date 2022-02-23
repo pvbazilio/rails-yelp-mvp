@@ -1,12 +1,51 @@
-<h1> Restaurants Details </h1>
+<div class = 'container'>
+  <div class = 'row'>
+    <div class = 'col-xs-12 col-sm-10 col sm-offset-1'>
+      <h1> <%= @restaurant.name %> </h1>
 
-<div class = "restaurants">
-<h2><%= @restaurant.name %></h2>
-<h2><%= @restaurant.address %></h2>
-<h2><%= @restaurant.phone_number %></h2>
-<h2><%= @restaurant.category %></h2>
+      <table class = 'table table-bordered'>
+        <tbody>
+          <tr>
+            <th scope = 'row'>Address</th>
+            <td><%= @restaurant.address %></td>
+          </tr>
+          <tr>
+            <th scope = 'row'>Phone number</th>
+            <td><%= @restaurant.phone_number%></td>
+          </tr>
+          <tr>
+            <th scope = 'row'>Category</th>
+            <td> <%= @restaurant.category %></td>
+          </tr>
+        </tbody>
+      </table>
+
+
+      <div class="list-group">
+      <% @restaurant.reviews.each do |review| %>
+        <li class="list-group-item">
+          <small>
+            <% count = 0 %>
+            <% 5.times do %>
+              <% if review.rating > count %>
+                <i class="fas fa-star"></i>
+              <% else %>
+                <i class="far fa-star"></i>
+              <% end %>
+              <% count += 1 %>
+            <% end %>
+          </small>
+          <p><%= review.content %></p>
+        </li>
+      <% end %>
+    </div>
+
+        <br>
+
+      <%= link_to 'Back', restaurants_path, class: 'btn btn-primary'%>
+
+      <%= link_to 'Leave a review', new_restaurant_review_path(@restaurant), class: 'btn btn-success' %>
+
+    </div>
+  </div>
 </div>
-
-<%= link_to "Edit restaurant", edit_restaurant_path %>
-
-<%= link_to "Delete #{@restaurant.name}", restaurant_path(@restaurant), method: :delete, data: { confirm: "Are you sure?" } %>

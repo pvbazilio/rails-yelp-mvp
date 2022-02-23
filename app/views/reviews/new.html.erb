@@ -1,18 +1,23 @@
-<h1> Add a Review to this Restaurant</h1>
+<div class = 'container'>
+  <div class = 'row'>
+    <div class = 'col-xs-12 col-sm-10 col sm-offset-1'>
 
-<%= form_for([@restaurant, @review]) do |t| %>
+      <h1> Add a Review to <%=@restaurant.name %></h1>
 
-  <%= t.label :rating %>
-  <%= t.text_field :rating %>
-  <br>
-  <%= t.label :content %>
-  <%= t.text_field :content %>
-  <br>
-  <br>
+      <%= simple_form_for([@restaurant, @review]) do |t| %>
 
-  <%= t.submit class: 'btn btn-success'%>
-  <% end %>
-<br>
-<br>
 
-<%= link_to "Back to list", restaurants_path %>
+        <%= t.input :rating, collection:(1..5) %>
+
+        <%= t.input :content %>
+        <br>
+
+        <%= t.submit class: 'btn btn-success'%>
+        <% end %>
+      <br>
+      <br>
+
+      <%= link_to "Back to list", restaurants_path, class: 'btn btn-primary' %>
+    </div>
+  </div>
+</div>
